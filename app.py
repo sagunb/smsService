@@ -10,15 +10,21 @@ app.secret_key = SECRET_KEY
 # Routing for your application.
 ###
 
-@app.route('/newsms')
+@app.route('/newsms', methods=['GET', 'POST'])
 def receive_sms():
     """Respond to a new sms"""
 
-    try:
-        resp = twilio.twiml.Response()
-        resp.message("Hello, Mobile Monkey")
-    except Exception as e:
-        resp = 'There was an error: {}'.format(str(e))
+    from_number = request.values.get('From')
+    body = request.values.get('Body')
+
+    if from_number and body:
+        msg = "You sent us: {}".format(body)
+    else:
+        msg = "Successful reception"
+
+    resp = twilio.twiml.Response()
+    resp.message(msg)
+
     return str(resp)
 
 
