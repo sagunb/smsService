@@ -25,7 +25,8 @@ def receive_sms():
     body = request.values.get('Body')
 
     resp = sms_sender.reply_to_message()
-    sos = '{}: {}'.format(from_number, body)
+    sos = "Dear MedMS volunteers. A patient with the following number: {} is requesting assistance. " \
+          "Patient's message: {}".format(from_number, body)
     failed_messages = sms_sender.send_new_message(sos, get_available_doctors())
 
     return str(resp)
