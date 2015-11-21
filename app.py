@@ -16,7 +16,7 @@ def receive_sms():
 
     resp = twilio.twiml.Response()
     resp.message("Hello, Mobile Monkey")
-    return render_template('home.html')
+    return str(resp)
 
 
 if __name__ == '__main__':
