@@ -14,7 +14,7 @@ class SmsService(object):
     @staticmethod
     def reply_to_message():
         resp = twilio.twiml.Response()
-        resp.message('Thank you for reaching out to medms we will try to connect you to a doctor as soon as possible.')
+        resp.message('Thank you for reaching out to MedMS we will try to connect you to a doctor as soon as possible.')
         return resp
 
     def send_new_message(self, body, recepients):
